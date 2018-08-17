@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const Rentals = require('../models/rental');
 
+const userctrl = require('../controllers/user')
+
+router.get('/secret', userctrl.authMiddleware, function(req, res){
+    res.json({"secret": true})
+})
+
+
 
 router.get('', function(req, res){
    Rentals.find({}, function(err, foundRentals){

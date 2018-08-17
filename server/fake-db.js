@@ -1,5 +1,5 @@
 const Rental = require('./models/rental');
-
+const User = require('./models/user');
 
 
 class FakeDb{
@@ -36,24 +36,35 @@ class FakeDb{
             shared: true,
             description: "Very nice apartment in center of the city.",
             dailyRate: 23
-}]
+}];
+        this.users= [{
+            username: "test user",
+            email: "test@gmail.com",
+            password: "testtest"
+        }]
     }
 
     async cleanDb(){
+        await User.remove({});
         await Rental.remove({});
     }
 
-    pushRentalstodb(){
+    pushDataToDb(){
+        const user = new User(this.users[0]);
+
         this.rentals.forEach((rental)=>{
             const newRental = new Rental(rental);
-
+            newRental.user = user;
+            user.rentals.push(newRental);
             newRental.save();
         })
+
+        user.save();
     }
 
-    seedDb(){
-        this.cleanDb();
-        this.pushRentalstodb();
+    async seedDb(){
+        await this.cleanDb();
+        this.pushDataToDb();
     }
 }
 
