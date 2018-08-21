@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json())
 mongoose.connect(config.DB_URI).then(()=>{
     const fakeDb = new FakeDb();
-    fakeDb.seedDb();
+   // fakeDb.seedDb();
 })
 
 const PORT= process.env.PORT || 3001;

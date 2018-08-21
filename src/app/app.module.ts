@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { RentalModule} from './rental/rental.module';
+import { AuthModule} from '../app/auth/auth.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent} from './common/header/header.component';
 import { RentalComponent } from './rental/rental.component';
@@ -26,6 +27,7 @@ const routes: Routes =[
     RentalModule,
     BrowserModule,
     RouterModule.forRoot(routes),
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

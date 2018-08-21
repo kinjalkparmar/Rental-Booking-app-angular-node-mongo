@@ -9,14 +9,16 @@ import { RentalDetailComponent} from './rental-detail/rental-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgPipesModule } from 'ngx-pipes';
 import { MapModule } from '../common/map/map.module';
-
+import {AuthGuard} from '../auth/shared/auth.guard';
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
 
 
 const routes: Routes =[
     {path: 'rentals', component: RentalComponent,
         children: [
             {path: '', component: RentalListComponent},
-            {path: ':rentalId', component: RentalDetailComponent}
+            {path: ':rentalId', component: RentalDetailComponent, canActivate: [AuthGuard]}
         ]
 
     },
@@ -28,14 +30,16 @@ const routes: Routes =[
         RentalListComponent,
         RentalListItemComponent,
         RentalComponent,
-        RentalDetailComponent
+        RentalDetailComponent,
+        RentalDetailBookingComponent
     ],
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,
-        MapModule
+        MapModule,
+        Daterangepicker
     ],
     providers: [RentalService]
 })
