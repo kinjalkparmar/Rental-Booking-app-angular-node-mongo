@@ -6,6 +6,9 @@ import { AuthModule} from '../app/auth/auth.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent} from './common/header/header.component';
 import { RentalComponent } from './rental/rental.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -27,7 +30,10 @@ const routes: Routes =[
     RentalModule,
     BrowserModule,
     RouterModule.forRoot(routes),
-    AuthModule
+    AuthModule,
+    NgbModule.forRoot(),
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
