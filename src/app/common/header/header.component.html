@@ -1,9 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" routerLink="/rentals">BookWithMe</a>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2 bwm-search" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0 btn-bwm-search" type="submit">Search</button>
-      </form>
+    <div class="form-inline">
+        <input #citySearch
+               class="form-control mr-sm-2 bwm-search" 
+               type="search" 
+               placeholder="Search by city name" 
+               aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0 btn-bwm-search" 
+                type="button" 
+                (keydown.enter)= "search(citySearch.value)"
+                (click)= "search(citySearch.value)"
+                >Search</button>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,8 +21,21 @@
             <a class="nav-item nav-link active" routerLink="/login">Login <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" routerLink="/register">Register</a>
         </ng-container>
-        <a class="nav-link" *ngIf="auth.isAuthenticated()">{{auth.getUsername()}}</a>
-        <a class="nav-link clickable" *ngIf="auth.isAuthenticated()" (click)="logout()">Logout</a>
+        <ng-container *ngIf="auth.isAuthenticated()">
+            <a class="nav-link">{{auth.getUsername()}}</a>
+            <div class="nav-item dropdown clickable">
+                <a class="nav-link dropdown-toggle" id="navBarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Owner Section
+              </a>
+              <div  class="dropdown-menu" aria-labelledby="navBarDropdownMenuLink">
+                <a class="dropdown-item" routerLink= "/rentals/new">Create Rental</a>
+              </div>
+            </div>
+            
+        <a class="nav-link clickable"(click)="logout()">Logout</a>
+        </ng-container>
+        
       </div>
     </div>
   </nav>
