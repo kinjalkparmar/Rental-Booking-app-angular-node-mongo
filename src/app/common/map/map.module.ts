@@ -14,7 +14,7 @@ import { CamelizePipe} from 'ngx-pipes';
   ],
   imports: [
     AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyD_Py3JSBlPhTotooy68dbbKUNXFVCCSU4'
+        apiKey: ''
     }),
     CommonModule
   ],
